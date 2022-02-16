@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // callback 말 그대로 뒤에 부른다고 해서 callback
+    // 동기 / 비동기와 상관없음
+
+    var f_daughter = function () {
+      alert("나 딸");
+    }
+  /*
+    var f_mother = function () {
+      alert("난 엄망");
+      f_daughter(); // 아주 형편없이 사용이 있어보이지 않는 그런 콜백함수
+    }
+  */
+    // 함수가 매개변수로 함수포인터를 받아서 그 함수를 실행시키면
+    // 그 놈이 콜백함수당
+    var f_mother = function (p_callback) {
+      alert("난 엄망");
+      p_callback(); 
+    }
+
+    f_mother(f_daughter); // f_daughter() 가 들어가면 실행문이기 때문에 (실행)선행함수가 되어서 콜백함수가 아님
+    f_mother(function () {
+      alert("한범이 미웡");
+    });
+
+    // 지역변수의 Scope(범위)가 확정되서 안 죽고 살아있는 것을 closure라고 부름
+    var f_closure = function () {
+      var v_local = "명진이바봉"; // 지역변수라는 것에 주목
+      return function () {
+        return v_local;
+      }
+    }
+
+    var f_innerFnc = f_closure();
+    alert(f_innerFnc());
+
+    function f_sangwoo(p_arg) {
+      if (p_arg >= 10) {
+        alert("상우 만만세");
+        return; // 함수 종료
+      }
+      alert("상우 바보");
+      // return; // 이게 생략되어 있다고 생각하면 편함
+      // 함수 종료기능도 가짐, return문을 잘 쓰면 if else => if문만 아서 코드 가독성이 좋아진당
+    }
+
+  alert(f_sangwoo());
+  </script>  
+</body>
+</html>

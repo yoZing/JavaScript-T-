@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form action="" id="myform" onsubmit="f_chk(this);return false">
+    <input type="text" name="yss1" value="aa" ><br>
+    <input type="text" name="yss2" value="bb" ><br>
+    <input type="text" name="yss3" value="cc" ><br>
+    <input type="submit" value="쩐송">
+  </form>
+  <script>
+    function f_chk(p_form){
+       var v_ajax = new XMLHttpRequest();
+       v_ajax.open("post","check.php",true);
+       v_ajax.onload = function(){
+         console.log(v_ajax.responseText);
+         alert(v_ajax.responseText);
+       }
+       v_ajax.send(new FormData(p_form));
+    }
+  </script>
+</body>
+</html>

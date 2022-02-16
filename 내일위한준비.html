@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    alert(a); // 멋진 말로 hoisting이라고 부름, 대단한 거 아님
+    // hoisting 코드를 먼저 한번 스캔해서 선언부를 위로 올림. 선언문만 지원
+    // function a() 이것은 함수 선언 문법
+    var a = function () { // 이것은 표현식(expression)임 표현식 특정 값을 반환하는 식 또는 코드
+      return "전 미영이에영";
+    }
+
+    function a() {
+      return "전 미영이에영";
+    }
+
+
+    // "use strict"; // 엄격모드 잊지말짱
+    // var v_zone = "로제";  // 우리가 선언한느 변수는 다 window 객체의 속성이 되어버림
+    window.v_roze = "허정은";
+    // alert(v_roze);
+    function f_check () { // 겉보긴 함수 선언이지만 window객체의 메소드 선언
+      console.log(this); //?
+      // 스크립트에선 프로그램 context(맥락, 흐름)에 따라 this가
+      // 가리키는 값이 바뀌어 버림, 아우 짜증나!
+      // this를 컨트롤 하는 call, apply, bind를 공부할 것임
+    }
+    
+    f_check();  // == window.f_check();
+
+    var v_hsh = {
+      name : "나 한석희 연예인"
+    }
+    v_hsh.myMethod = f_check;
+    v_hsh.myMethod(); // this?
+
+  </script>  
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="lsm">나 소망이얌</div>
+  <script>
+    // 기본적으로 문자열은 기본형(primitive)이지만, .이 붙으면
+    // 자동으로 String(Wrapper) 로 바뀜
+    alert("관우 웬일로열심".substring(0, 3));
+
+    var v_html = document.querySelector('#lsm');
+    v_html.innerHTML = "<h1>푸하하하</h1>";
+    // 즉각실행함수라고 부름
+    // 딱 1번만 실행이 필요한 내용을 함수로 만들고 싶지 않아서 곧 메모리 절약
+    // 중요한 핵심코드를 묶으면 중요함이 표시됨, 곧 블락으로 보임
+    // 라이브러리 코드에서 한번씩 보임(일반적으로는 잘 안보임)
+    // return 함수() 
+    (function (p_arg) {
+      alert("난 누구인가?" + p_arg);
+    })("관우장군휴식");
+
+    // 회사에 갔더니 고참이 이미 만들어 놨어
+    var f_common = function (p_arr, p_cb) {
+      for (var i = 0; i < p_arr.length; i++) {
+        p_cb(i, p_arr[i],p_arr);
+      }
+    }
+
+    var v_arr = ["명진", "관우", "한범", "소망", "세준"];
+    var f_each = function (p_index, p_val) {
+      alert(p_index + ":" + p_val)
+    }
+
+    f_common(v_arr, function(p_index, p_val, p_arr) {
+      if (p_val == "한범") {
+        p_arr[p_index] = "한범바보";
+      }
+    });
+
+  </script>
+</body>
+</html>

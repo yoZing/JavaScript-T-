@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+<body>
+
+  <script>
+    // tricky, weary... 호불호가 많이 갈림
+    var kys = "KJW";
+    var v_grade = { // [""]를 쓸때는 key값으로 변수를 쓰고 싶을 때 사용한다.
+      [kys] : "반짱",
+      ["grade1"] : "사장",
+      grade2 : "바지사장",
+      grade3 : "바지전무",
+      grade4 : "웃도리상무"
+    };
+
+    alert(v_grade.KJW);
+
+    var v_sawons = [
+      {name : "로제", level : "grade1"},
+      {name : "제니", level : "grade2"},
+      {name : "리사", level : "grade3"},
+      {name : "지쑤", level : "grade4"}
+    ];
+    /*
+      이름      직책
+      로제      사장
+      제니      바지사장
+      제니      바지전무
+      지쑤      웃도리상무
+    */
+    var v_tblStr = "<table border=1>";
+      v_tblStr += "<tr>";
+      v_tblStr += "<th>이름</th>";
+      v_tblStr += "<th>직책</th>";
+      v_tblStr += "</tr>";
+      for (i = 0; i < v_sawons.length; i++) {
+        v_tblStr += "<tr>";
+        v_tblStr += "<td>"+ v_sawons[i].name + "</td>";
+        v_tblStr += "<td>"+ v_grade[v_sawons[i].level] + "</td>";
+        v_tblStr += "</td>";
+      }
+      v_tblStr += "</table>";
+      
+      document.write(v_tblStr);
+
+  </script>
+
+</body>
+</html>

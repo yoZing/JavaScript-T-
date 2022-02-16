@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<meta charset='UTF-8'>
+<script>
+  // 일단 ES5 버젼으로...
+  "use strict"; // 엄격모드 적용
+  var aaa = "ppp"; // 일반적인 전역변수 선언
+  // 큰 프로젝트에선 전역변수 리스트 관리 필요
+  // 그런테 JS에는 name space가 없음
+  var JY = {};  // name space용 빈 객체
+  JY.aaa = "흥";
+  JY.bbb = "치";
+  JY.ccc = "피";
+
+  for (var v_attr in JY) {
+    // console.log(v_attr);
+  }
+
+  // 변수 타입 기본타입: number, string, boolean
+  // undefinded, null은 무시
+  // 그 외 객체(Array, JSON)
+
+  var v_number1 = 100;
+  var v_number2 = v_number1;  // 복사(copy)
+  v_number2 = 300;
+  // alert(v_number1); 
+
+  var v_obj1 = {"name":"잔소리"};
+  var v_obj2 = v_obj1;  // 레퍼런스(Reference)
+  v_obj2.name = "로제짱";
+  // alert(v_obj1.name);
+
+  var v_str = "100";
+  // alert(typeof(v_str));
+  v_str = v_str - 0;
+  // alert(typeof(v_str));
+  // alert(v_str / 100);
+  // +는 문자열 더하기, 숫자더하기 중 문자열 더하기 우선
+  // -, *, /는 문자열엔 없기 때문에 숫자로 먼저 바꾸어서 계산
+
+
+  // while ("이거슨 무한루푸푸") {
+
+  // }
+
+  // if (0) {
+  //   alert("이것은 참?");
+  // } else {
+  //   alert("난 거짓이얌");
+  // }
+
+</script>
