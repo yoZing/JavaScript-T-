@@ -5,6 +5,6 @@ use strict (var를 안붙이면 error가 난다.)
 객체의 key(속성)값은 자동으로 문자열로 처리된다, value에는 변수가 들어갈 수 있다.
 배열식 접근법
 빨리데이션(validation 유효성 체크)
-콜백함수
-closure
-call, apply, bind(내부적)
+this - call, apply, bind(내부적)
+콜백함수 - 즉각실행함수 -> DRY원칙
+

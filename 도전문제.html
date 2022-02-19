@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form action="">
+    관심분야(3개까지만 체크해 주셤) <br/>
+    HTML<input type="checkbox" name="nm_cat" value="html">
+    CSS<input type="checkbox" name="nm_cat" value="css">
+    JS<input type="checkbox" name="nm_cat" value="js">
+    JAVA<input type="checkbox" name="nm_cat" value="java">
+    MongoDB<input type="checkbox" name="nm_cat" value="mogodb">
+    Spring<input type="checkbox" name="nm_cat" value="spring">
+  </form>
+  <script>
+    var v_checkBoxes = document.querySelectorAll('input[name=nm_cat]');
+    var cnt = 0;
+
+    //이벤트 등록
+    //var는 전역/function 스코프
+    /* for(var i=0; i<v_checkBoxes.length; i++) {
+      // var의 값이 문제 될 때, 항상 함수를 맹글어서
+      // 매개변수로 넘긴당
+      v_ckboxs[i].addEventListener("click",function(){
+          alert("클릭 넘버" + i);
+      });
+      f_var(v_checkBoxes[i],i);
+    }
+    */
+    function f_var(p_item,p_index){
+      p_item.addEventListener("click",function(){
+          alert("클릭 넘버:" + p_index);
+      });
+    }
+    
+    for(let i = 0; i < v_checkBoxes.length; i++){
+      v_checkBoxes[i].addEventListener("click", flag_checked);
+    }
+
+    function flag_checked () {
+      if (this.checked) {
+        cnt++;
+      } 
+      if (!this.checked) {
+        cnt--;
+      }
+
+      if (cnt > 3) {
+        this.checked = false;
+        cnt--;
+      }
+      console.log(cnt);
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;;
+    }
+    #id_heart {
+      position: relative;
+      /* border : 1px solid black; */
+      overflow: hidden;
+      transform: rotate(45deg);
+      transform-origin: center top;
+      left: 300px;
+    }
+    #id_right {
+      position: absolute;
+      /* border : 1px solid black; */
+      background-color: red;
+      border-radius: 50%;
+      left: 100px;
+    }
+    #id_bottom {
+      position: absolute;
+      /* border : 1px solid black; */
+      background-color: red;
+      border-radius: 50%;
+      top: 100px;
+    }
+  </style>
+</head>
+<body>
+  <input type="button" value="다 돌려봐" id="id_lol">
+  <input type="button" value="클로닝" id="id_clon">
+  <div id="id_heart">
+    <div id="id_right"></div>
+    <div id="id_bottom"></div>
+  </div>
+<script>
+  var v_clone = document.querySelector('#id_clon');
+  var f_clone = function () {
+    var v_copy = v_heart.cloneNode(true); // Node복사(클론); 얕은 복사 // true를 매개변수로 넣으면 깊은 복사
+    document.body.appendChild(v_copy);
+  }
+  v_clone.addEventListener("click", f_clone);
+
+
+
+  var v_lol = document.querySelector('#id_lol');
+  var v_heart = document.querySelector('#id_heart');
+  var v_gak = 0;
+
+  function f_lol() {
+    v_gak = (v_gak + 10) % 360;
+    v_heart.style.transform = "rotate(" + v_gak + "deg)";
+    setTimeout(f_lol, 10);
+  }
+  v_lol.addEventListener('click', f_lol)
+
+</script>
+</body>
+</html>
