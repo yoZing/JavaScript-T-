@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #id_disp {
+        width:300px;
+        height:300px;
+        border:2px solid pink;
+    }
+    div {
+        border: 2px solid black;
+    }
+    #id_grand {
+        width:300px;
+        height:300px;
+    }
+    #id_mom {
+        width:200px;
+        height:200px;
+    }
+    #jyu {
+        width:100px;
+        height:100px;
+    }
+</style>
+</head>
+<body>
+    <div id="id_grand" onclick="f_grnd()">할머닝
+        <div id="id_mom" onclick="f_mom()">어머닝
+            <div id="jyu" onclick="f_jyu()">주열잉</div>
+        </div>
+    </div>
+<script>
+    function f_grnd(){
+        event.stopPropagation();  // 이벤트 버블링 => 이벤트 캡쳐링
+        alert("나 할머닝");
+    }
+    function f_mom(){
+        event.stopPropagation();  // 프라이버시는 중요해!
+        alert("나 어머닝");
+    }
+    function f_jyu(){
+        event.stopPropagation();  // 프라이버시는 중요해!
+        alert("나 주열");
+    }
+
+</script>
+
+    <div id="id_disp"></div>
+<!--    
+    <a href="#" onclick="f_ck()">어디가?</a>
+-->
+<script>
+    function f_ck(){
+        event.preventDefault();//원래기능(built-in) 막기
+        alert("이 다음에 무슨일이 일어냐요?");
+    }
+    //꼭 기억해야 하는 event객체의 메소드
+    //event.preventDefault();
+    //event.stopPropagation();
+</script>
+</body>
+</html>

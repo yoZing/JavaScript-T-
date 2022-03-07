@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+  <meta charset="UTF-8">
+  <script>
+    /*
+    localStorage.setItem("키컸으면" , "노픈크록스");
+    localStorage.setItem("key", "value");
+    // localStorage.setItem("key", "넌 누구냐?");  // 키가 같으면 덮어쓴다(update)
+    localStorage.key1 = "넌 반장이냥?";
+    localStorage.removeItem("key"); // 삭제
+    console.log(localStorage.key(0)); // 해당 index의 key값?
+    console.log(localStorage.length);
+    */
+
+    localStorage.clear();
+
+    var v_datas = []; // 더미 데이터를 담을 빼열;
+
+    // 메모리 누수는 일어나지 않음 -> 메모리 누수는 생성해놓고 찾지 못하는 것
+    for (var i = 1; i <= 20; i++) { // 더미 데이터 20개 괜히 생성
+      var v_obj = {};
+      v_obj.name = "소망" + i;
+      v_obj.alias = "미래 더 젊음" + i;
+      v_datas.push(v_obj);
+    }
+    /*
+    var v_obj = {
+      name : "소망",
+      description : "안경쓰면 더 착해보인다"
+    }
+    */
+
+    // 안타깝지만 localStorage는 문자열밖에 저장 하지 못함 / 자바에선 serialize 라고 하지 ㅋㅋ
+    localStorage.setItem("somangT", JSON.stringify(v_datas));  // 객체 저장 시도
+    // 여기서 체킁 문제
+    // 소망13 의 alias값을 "이한범 바쳐서 ?"로 바꾸어 봅니다. 중요(로컬스토리지 사용의 포인토)
+    
+    var v_getArr = JSON.parse(localStorage.getItem("somangT")); // 읽어와서
+    v_getArr[12].alias = ["1", "2", "3", "4"];  // 값 수정하고
+    localStorage.setItem("somangT", JSON.stringify(v_getArr));
+    
+    // 객체지향DB는 비정형데이터에 적합하다(컬럼갯수, 타입 등의 변화에 대응이 자연스럽다.)
+    // MongoDB가 유명
+    var v_db = {
+      tbl1 : [{}, {}, {}, {}],
+      tbl2 : [{}, {}, {}, {}],
+      tbl3 : [{}, {}, {}, {}]
+    }
+
+    localStorage.setItem("mongoDB", JSON.stringify(v_db));
+
+
+      
+
+  </script>

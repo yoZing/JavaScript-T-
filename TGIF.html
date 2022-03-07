@@ -50,18 +50,18 @@
         v_posX[0] = v_msX + v_gapX;
         v_posY[0] = v_msY;
 
-        /* 아래 for문을 주석처리하고 위 for문을 주석해제 해 보세요
+        /* 아래 for문을 주석처리하고 위 for문을 주석해제 해 보세요 */
         for(var i=1; i< v_chars.length; i++){
             v_posX[i] = v_posX[i-1] + v_gapX;
             v_posY[i] = v_posY[i-1];
         }
-        */
+        
 
         /* 아래 for문을 주석처리하고 위 for문을 주석해제 해 보세요 */
-        for(var i=v_chars.length-1; i>=1; i--){
-            v_posX[i] = v_posX[i-1] + v_gapX;
-            v_posY[i] = v_posY[i-1];
-        }
+        // for(var i=v_chars.length-1; i>=1; i--){
+        //     v_posX[i] = v_posX[i-1] + v_gapX;
+        //     v_posY[i] = v_posY[i-1];
+        // }
 
 
         for(var i=0; i<v_chars.length; i++){

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="./jsp.js"></script>
+</head>
+<body>
+  <h1>정말 볼품없는 게시판 부트스트랩 필요없엉</h1>
+  <script>
+    // 그냥 배열 꺼내서 table형식으로만 뿌려주면 됨
+    v_datas = JSON.parse(localStorage.getItem("gesiTable"));
+    v_tblStr = "<table border=2>";
+    v_tblStr += "<tr><th>넘버</th><th>글제목</th><th>지은이</th><th>보유스킬</th></tr>"
+    for (var i = 0; i < v_datas.length; i++) {
+      v_tblStr += "<tr>";
+      v_tblStr += "<td>" + i + "</td>";
+      // 보통은 고유 key 값을 주는 것이 좋은데 여기서는 그냥 index 번호로
+      v_tblStr += "<td><a href='read.html?gnum=" + i + "'>" + v_datas[i].title + "</a></td>";
+      v_tblStr += "<td>" + v_datas[i].writer + "</td>";
+      v_tblStr += "<td>" + v_datas[i].skills + "</td>";
+      v_tblStr += "<td><input type=checkbox name=nm_del value=" + i + "></td>";
+      v_tblStr += "</tr>";
+    }
+    v_tblStr += "</table>";
+    v_tblStr += "<input type=button value='선택된거삭제'><br>";
+    v_tblStr += "<a href='write.html'>글쓰깅</a>"
+    out.print(v_tblStr);
+  </script>
+  <script>
+    // 즐거운 선거 후 숙제 -- 선택된 것만 삭제하고 다시 리스트 힌트 : 배열메소드 splice
+  </script>
+</body>
+</html>

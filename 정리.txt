@@ -8,3 +8,16 @@ use strict (var를 안붙이면 error가 난다.)
 this - call, apply, bind(내부적)
 콜백함수 - 즉각실행함수 -> DRY원칙
 
+tabindex = 0, 부호로 방향처리, cloneNode(true) 깊은 복사
+transform, transform-origin, rotate, skew
+AJAX, 비동기, Origin, Cross Origin, CORS, Same-Origin-Policy, JSONP
+다양한 Open-API
+빈 객체를 네임스페이스로 활용
+var 전역/함수 Scope, let은 블락 Scope
+
+무한스크롤, 이미지끌어다놓기(파일 잘 가지고 있으면 끝) -> event.preventDefault(), event.stopPropagation();
+주소줄 잘라서 request.getParameter 맹글어보깅, frame 쓰면 보안이 약하다.
+localStorage(Cookie 대신 활용하면 좋음) - 제약 : 문자열 밖에 저장이 안됨
+발표 당시, 오프라인모드 지원을 위한 중요 이슈였었으나, 브라우저업체가 합의가 잘 안 이루어짐
+location.replace() 는 내가 가지고 있어도 새거를 달라고함.
+location.href = 가지고 있으면 내꺼 씀

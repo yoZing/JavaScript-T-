@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>모바일에서 많이 쓰는 기능</title>
+</head>
+<body>
+  <div id="wrapper">
+    <h1>잔소리 잔소리1</h1>
+    <h1>잔소리 잔소리2</h1>
+    <h1>잔소리 잔소리3</h1>
+    <h1>잔소리 잔소리4</h1>
+    <h1>잔소리 잔소리5</h1>
+    <h1>잔소리 잔소리6</h1>
+    <h1>잔소리 잔소리7</h1>
+    <h1>잔소리 잔소리8</h1>
+    <h1>잔소리 잔소리9</h1>
+    <h1>잔소리 잔소리10</h1>
+    <h1>잔소리 잔소리11</h1>
+    <h1>잔소리 잔소리12</h1>
+    <h1>잔소리 잔소리13</h1>
+    <h1>잔소리 잔소리14</h1>
+    <h1>잔소리 잔소리15</h1>
+    <h1>잔소리 잔소리16</h1>
+    <h1>잔소리 잔소리17</h1>
+    <h1>잔소리 잔소리18</h1>
+    <h1>잔소리 잔소리19</h1>
+    <h1>잔소리 잔소리20</h1>
+    <h1>잔소리 잔소리21</h1>
+    <h1>잔소리 잔소리22</h1>
+    <h1>잔소리 잔소리23</h1>
+    <h1>잔소리 잔소리24</h1>
+    <h1>잔소리 잔소리25</h1>
+    <h1>잔소리 잔소리26</h1>
+    <h1>잔소리 잔소리27</h1>
+    <h1>잔소리 잔소리28</h1>
+    <h1>잔소리 잔소리29</h1>
+    <h1>잔소리 잔소리30</h1>
+    <h1>잔소리 잔소리31</h1>
+    <h1>잔소리 잔소리32</h1>
+    <h1>잔소리 잔소리33</h1>
+    <h1>잔소리 잔소리34</h1>
+    <h1>잔소리 잔소리35</h1>
+    <h1>잔소리 잔소리36</h1>
+    <h1>잔소리 잔소리37</h1>
+    <h1>잔소리 잔소리38</h1>
+    <h1>잔소리 잔소리39</h1>
+    <h1>잔소리 잔소리40</h1>
+    <h1>잔소리 잔소리41</h1>
+    <h1>잔소리 잔소리42</h1>
+    <h1>잔소리 잔소리43</h1>
+    <h1>잔소리 잔소리44</h1>
+    <h1>잔소리 잔소리45</h1>
+    <h1>잔소리 잔소리46</h1>
+    <h1>잔소리 잔소리47</h1>
+    <h1>잔소리 잔소리48</h1>
+    <h1>잔소리 잔소리49</h1>
+    <h1>잔소리 잔소리50</h1>
+    <h1>잔소리 잔소리51</h1>
+    <h1>잔소리 잔소리52</h1>
+    <h1>잔소리 잔소리53</h1>
+    <h1>잔소리 잔소리54</h1>
+    <h1>잔소리 잔소리55</h1>
+    <h1>잔소리 잔소리56</h1>
+    <h1>잔소리 잔소리57</h1>
+    <h1>잔소리 잔소리58</h1>
+  </div>
+<script>
+  setTimeout(function() {
+    // 구글의 자랑질 자신들의 엔진이 넘 빨라서 브라우저가 알지도 못할 정도
+    window.scrollTo(0,0);
+  }, 10);
+  // 이것도 거의 이런식으로밖에 안 쓰니까 소스가지고 있다가 쪼메 수정
+  var v_tuning = 150; // 이 값으로 바닥에서 떨어진 포인트 상대적 지정
+  var v_number = 1000;
+  var v_wrapper = document.querySelector("#wrapper");
+  var f_scroll = function () {
+    // console.log(document.body.scrollTop);
+    var scrollTop = parseInt(document.documentElement.scrollTop);
+    var clientHeight = parseInt(document.documentElement.clientHeight);
+    var scollHeight = parseInt(document.documentElement.scrollHeight);
+    // 스크롤바가 바닥을 치면 scollTop + clientHegiht = scollHeight
+
+    if ((scrollTop + clientHeight) >= (scollHeight - v_tuning)) {
+      // 실질적으로 사용할 땐 여기서 AJAX가 와야 함!
+      for (var i = 0; i <= 10; i++) {
+        var v_h1 = document.createElement('h1');
+        v_h1.innerHTML = "수민이 잔소리" + v_number++;
+        v_wrapper.appendChild(v_h1);
+      }
+    }
+  }
+  window.addEventListener('scroll', f_scroll);
+</script>
+</body>
+</html>

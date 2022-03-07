@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+  <meta charset="UTF-8">
+<script>
+  // refactoring(리팩토링) 결국은 정리
+  // 요롷게 정리하는 것을 리팩토링이라고 부름
+  var isRepeat = function (p_arr, p_val) {
+    for (var i = 0; i < p_arr.length; i++) {
+      if (p_arr[i] == p_val) {
+        return true;  // 같은 게 있어요
+      }
+    }
+    return false;     // 같은 게 없어요
+  }
+  var v_lotto = [];
+  while("몇번만에 될지 알 수 없음") {
+    var v_ran = Math.ceil(Math.random() * 45); // 1~45
+
+    if (!isRepeat(v_lotto, v_ran)) {
+      v_lotto.push(v_ran);
+    }
+
+    // 중복체크 로직 -> 그 자체로 중요
+    /* 
+    var v_isIn = false;  // 이미 있다고 가정
+    for (var i = 0; i < v_lotto.length; i++) {
+      if (v_lotto[i] == v_ran) {
+        v_isIn = true;
+        break;
+      }
+    }
+    if (!v_isIn) {  // 같은 값이 없다면
+      v_lotto.push(v_ran);
+    } */
+
+    // 여긴 무한 루핑 종료 조건
+    if (v_lotto.length == 6) {  // 6개 다 차면
+      break;                    // 끝
+    }
+  }
+  alert("발생한 로또번호는 " + v_lotto);
+</script>
