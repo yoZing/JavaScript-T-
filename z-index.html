@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .mother {
+      position: relative;
+    }
+    .child {
+      position: absolute; /* 엄마가 relative면 absolute자식은 엄마 왼쪽모서리에 가서 붙는당. */
+      border: 2px groove black;
+      width: 210px;
+      top : 30px;
+    }
+    .base {
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+      position absolute는 무조건 layer로 부웅 떠오름
+      z-index 값이 크면 무조건 앞쪽 // static relative absolute
+      z-index 잘 쓰면 화면구성을 레이어로 구성해서 SPA(Single Page Application)에 활용할 수 있음
+  -->
+  <div id="mother" class="mother">
+    <div class="base">
+      <input type="button" value="<" id="id_btn1">
+      <input type="text" id="id_disp" value="" size="10">
+      <input type="button" value=">" id="id_btn2"><br>
+    </div>
+    <div id="iu1" class="child">
+      <img src="./images/iu.jpg" width="100px" height="100px">
+      <img src="./images/iu1.jpg" width="100px" height="100px"><br>
+      <img src="./images/iu2.jpg" width="100px" height="100px">
+      <img src="./images/iu3.jpg" width="100px" height="100px">
+    </div>
+    <div id="iu2" class="child">
+      <img src="./images/iu4.jpg" width="100px" height="100px">
+      <img src="./images/iu5.jpg" width="100px" height="100px"><br>
+      <img src="./images/iu6.jpg" width="100px" height="100px">
+      <img src="./images/iu7.jpg" width="100px" height="100px">
+    </div>
+    <div id="iu3" class="child">
+      <img src="./images/iu8.jpg" width="100px" height="100px">
+      <img src="./images/iu9.jpg" width="100px" height="100px"><br>
+      <img src="./images/iu10.jpg" width="100px" height="100px">
+      <img src="./images/iu11.jpg" width="100px" height="100px">
+    </div>
+  </div>
+<script>
+  var v_left = document.getElementById("id_btn1");
+  var v_text = document.getElementById("id_disp")
+  var v_right = document.getElementById("id_btn2");
+  var v_mother = document.getElementById("mother");
+  var v_layers = document.querySelectorAll(".child");
+  var v_curIndex = 0;
+  var v_timer = null;
+  var f_over = function () {
+    v_mother.style.cursor = "pointer";
+    clearTimeout(v_timer);  // 타이머 죽이깅
+    v_timer = null; // 그냥 괜히 초기화
+  }
+
+  var f_out = function () {
+    v_mother.style.cursor = "default";
+    f_init(v_curIndex);
+  }
+
+  var f_right = function () {
+    // 빠르게 구현해봅니다.
+    f_init(v_curIndex + 1);
+    clearTimeout(v_timer);
+  }
+
+  var f_left = function () {
+    if (v_curIndex == 0)
+      v_curIndex = 3;
+    f_init(v_curIndex - 1);
+    clearTimeout(v_timer);
+  }
+
+  var f_init = function (p_index) {
+    for (var i = 0; i < v_layers.length; i++) {
+      v_layers[i].style.zIndex = 100;
+    }
+
+    v_layers[p_index].style.zIndex = 1000;
+    v_text.value = (p_index + 1) + "/" + v_layers.length;
+    v_curIndex = p_index;
+    if(p_index == 2) p_index = -1;
+    v_timer = setTimeout(f_init, 1000, p_index + 1);
+  }
+
+  window.addEventListener("load", f_init.bind(null, 0));
+
+  v_mother.addEventListener("mouseover", f_over);
+  v_mother.addEventListener("mouseout", f_out);
+  v_right.addEventListener("click", f_right);
+  v_left.addEventListener("click", f_left);
+</script>
+</body>
+</html>

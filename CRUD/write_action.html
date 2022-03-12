@@ -16,12 +16,15 @@
   v_gul.content = v_content;
 
   var v_datas = null; // 그냥 괜히 NULL 초기화
+  var v_id = 1;
   if (!localStorage.getItem("gesiTable")) {
     v_datas = []; // 첫번째 글이라면 담을 빈 배열 초기화
   } else {
     v_datas = JSON.parse(localStorage.getItem("gesiTable"));
+    v_id = v_datas[v_datas.length].id + 1;  // 마지막꺼 +1
   }
-
+  v_gul.id = v_id;
+  
   v_datas.push(v_gul);
   // 저장, localStorage는 문자열 밖에 저장이 안됨
   localStorage.setItem("gesiTable", JSON.stringify(v_datas));

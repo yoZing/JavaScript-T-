@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="UTF-8">
+<script src="./jsp.js"></script>
+<script>
+  var v_gid = request.getParameter("gid");
+  var v_title = request.getParameter("n_title");
+  var v_writer = request.getParameter("n_writer");
+  var v_skills = request.getParameterValues("n_skills");
+  var v_content = request.getParameter("n_content").replaceAll("+", " ");
+
+  // 따로 저장하기 보단 한 묶음으로 묶어서 저장하고 싶음, 왜? 관련이 깊으니깡
+  var v_gul = {}; // 묶음을 위한 바구니 빈 객체
+  v_gul.id = v_gid
+  v_gul.title = v_title.replace("+", " ");  // 객체의 속성을 마구 붙여줌
+  v_gul.writer = v_writer;
+  v_gul.skills = v_skills;
+  v_gul.content = v_content;
+
+  var v_datas = JSON.parse(localStorage.getItem("gesiTable"));
+  for (var i = 0; i < v_datas.length; i++) {
+    if (v_datas[i].id == v_gid) {
+      v_datas[i] = v_gul;
+      localStorage.setItem("gesiTable", JSON.stringify(v_datas));
+      break;
+    }
+  }
+  alert("잘 수정 되었을거얌 아마도...");
+  location.replace("list.html");  //replace 메소드는 꼭 새걸 달라고 함, 서버에 cud를 해서 바뀐걸 받을 때 쓰면 좋다
+  // location.href = "read.html?gid=" + v_gid; // 이미 가진 걸(캐쉬) 보여 줄 수도 있고, 아닐 수도 있음, 성능이 더 좋음
+
+</script>

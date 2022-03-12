@@ -4,31 +4,95 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <script src="./jsp.js"></script>
+  <style>
+    .active {
+      color : red;
+      font-size: 5em;
+    }
+  </style>
 </head>
 <body>
   <h1>정말 볼품없는 게시판 부트스트랩 필요없엉</h1>
   <script>
     // 그냥 배열 꺼내서 table형식으로만 뿌려주면 됨
     v_datas = JSON.parse(localStorage.getItem("gesiTable"));
+    /* 괘니 페이지 나누어 보아용 */
+    var v_curPage = 1;   // 일단 그냥 1페이지
+    if (request.getParameter("yusin")) {
+      v_curPage = request.getParameter("yusin");
+    }
+
+    var v_cntPerP = 10; // 페이지당
+    var v_totalPage = Math.ceil(v_datas.length / v_cntPerP);
+    var v_startNum = (v_curPage - 1) * v_cntPerP;  // 2page는 10부터
+    var v_endNum = v_startNum + v_cntPerP;  // 해당페이지의 배열 마지막 index
+    if (v_endNum >= v_datas.length) {  // 마지막 페이지 글 갯수는 모지랄 수 있음
+      v_endNum = v_datas.length;
+    }
+
     v_tblStr = "<table border=2>";
-    v_tblStr += "<tr><th>넘버</th><th>글제목</th><th>지은이</th><th>보유스킬</th></tr>"
-    for (var i = 0; i < v_datas.length; i++) {
-      v_tblStr += "<tr>";
+    v_tblStr += "<tr><th>넘버</th><th>글제목</th><th>지은이</th><th>보유스킬</th><th>내용</th><th>체크박스</th></tr>"
+    for (var i = v_startNum; i < v_endNum; i++) {
+      v_tblStr += "<tr data-no='" + i + "'>";
       v_tblStr += "<td>" + i + "</td>";
       // 보통은 고유 key 값을 주는 것이 좋은데 여기서는 그냥 index 번호로
-      v_tblStr += "<td><a href='read.html?gnum=" + i + "'>" + v_datas[i].title + "</a></td>";
+      v_tblStr += "<td><a href='read.html?gid=" + v_datas[i].id + "'>" + v_datas[i].title + "</a></td>";
       v_tblStr += "<td>" + v_datas[i].writer + "</td>";
       v_tblStr += "<td>" + v_datas[i].skills + "</td>";
-      v_tblStr += "<td><input type=checkbox name=nm_del value=" + i + "></td>";
+      v_tblStr += "<td>" + v_datas[i].content + "</td>";
+      v_tblStr += "<td><input type=checkbox name=nm_del value=" + v_datas[i].id + "></td>";
       v_tblStr += "</tr>";
     }
     v_tblStr += "</table>";
-    v_tblStr += "<input type=button value='선택된거삭제'><br>";
-    v_tblStr += "<a href='write.html'>글쓰깅</a>"
+    v_tblStr += "<input type='button' value='선택된거삭제' id='id_btn'><br>";
+    v_tblStr += "<a href='write.html'>글쓰깅</a><br>";
+    /* 전체 페이지 출력 */
+    for (var i = 1; i <= v_totalPage; i++) {
+      if (i == v_curPage) {
+        v_tblStr += "<a class='active' href='list.html?yusin=" + i + "'>"+ i +"</a>&nbsp;&nbsp;&nbsp;&nbsp;";
+      } else {
+        v_tblStr += "<a href='list.html?yusin=" + i + "'>"+ i +"</a>&nbsp;&nbsp;&nbsp;&nbsp;";
+      }
+    }
     out.print(v_tblStr);
-  </script>
+    </script>
   <script>
     // 즐거운 선거 후 숙제 -- 선택된 것만 삭제하고 다시 리스트 힌트 : 배열메소드 splice
+    var v_btn = document.querySelector("#id_btn");
+    var v_ckboxs = document.getElementsByName("nm_del");
+
+    var f_del = function(){
+        //로직적으로 해결하긴 했지만 근본적으로 좋은 방법은 아님, 값이 바뀌는 index번호를 쓰니깡
+        for(var i=0; i<v_ckboxs.length; i++){ // 앞으로 돌리면 땡겨져버림
+            if(v_ckboxs[i].checked){
+                for(var j=0; j< v_datas.length; j++){
+                    if(v_datas[j].id == v_ckboxs[i].value){
+                        v_datas.splice(j,1); // id는 유일하므로 찾아서 지웠으면 for문 빠져나가깅
+                        break; // 안쪽 for문 빠져나가기
+                    }
+                }
+            }
+        }
+        localStorage.setItem("gesiTable",JSON.stringify(v_datas));// 배열 로컬스토리지에 덮어쓰깅 
+        location.replace("list.html");  // 페이지 다시 불러오깅
+    }
+    v_btn.addEventListener("click",f_del);
+    // v_datas = JSON.parse(localStorage.getItem("gesiTable"));
+    // var deleteBtn = document.querySelector('#deleteBtn');
+    // deleteBtn.addEventListener('click', deleteSelectedRow);
+
+    // function deleteSelectedRow() {
+    //   // alert("delete Btn Check");
+    //   var checkBoxes = document.querySelectorAll("input[name=nm_del]:checked");
+    //   for (var i = checkBoxes.length - 1; i >= 0; i--) {
+        
+    //     v_datas.splice(v_datas[checkBoxes[i].value], 1);
+    //     localStorage.setItem("gesiTable", JSON.stringify(v_datas));
+    //   }
+    //   location.reload();
+    // }
+
+
   </script>
 </body>
 </html>
